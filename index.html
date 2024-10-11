@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepCam - Real-Time Deepfake Face Swapping</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+<!-- Navigation Menu -->
+<nav class="bg-white shadow-md py-4">
+    <div class="container mx-auto flex justify-between items-center px-4">
+        <a href="#" class="text-2xl font-bold text-indigo-600">DeepCam</a>
+        
+        <!-- Mobile Menu Icon -->
+        <div class="md:hidden">
+            <button id="menuToggle" class="text-gray-600 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Login with Google Button -->
+        <div class="hidden md:flex">
+            <button class="bg-indigo-600 text-white py-2 px-4 rounded-full ml-3 flex items-center shadow-md hover:bg-indigo-700 focus:outline-none">
+                <img src="https://www.svgrepo.com/show/355037/google.svg" alt="Google Icon" class="w-5 h-5 mr-2">
+                Login with Google
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile Menu Dropdown -->
+    <div id="mobileMenu" class="md:hidden hidden px-4 py-2 bg-white">
+        <ul class="space-y-4">
+            <li><a href="#how-it-works" class="block text-gray-600 hover:text-indigo-600">How It Works</a></li>
+            <li><a href="#demo" class="block text-gray-600 hover:text-indigo-600">Examples</a></li>
+            <li><a href="#pricing" class="block text-gray-600 hover:text-indigo-600">Pricing</a></li>
+            <li>
+                <button class="bg-indigo-600 text-white py-2 px-4 w-full rounded-full flex items-center justify-center shadow-md hover:bg-indigo-700 focus:outline-none">
+                    <img src="https://www.svgrepo.com/show/355037/google.svg" alt="Google Icon" class="w-5 h-5 mr-2">
+                    Login with Google
+                </button>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+    <!-- Deepfake App Section (First Section) -->
+    <section id="home" class="bg-indigo-600 text-white py-20">
+        <div class="container mx-auto max-w-lg bg-white p-8 rounded-lg shadow-md">
+            <h2 class="text-3xl font-bold mb-6 text-center text-indigo-600">Put yout face in any video</h2>
+
+           <!-- Select Face Image -->
+            <div class="mb-6">
+                <label for="faceImage" class="block text-lg font-semibold mb-2 text-indigo-600">Select Face Image:</label>
+                <div class="relative mt-6">
+                    <input type="file" id="faceImage" accept="image/*" class="hidden" />
+                    <label for="faceImage" class="w-full text-center bg-indigo-600 text-white py-2 px-4 rounded-md cursor-pointer font-semibold hover:bg-indigo-700 inline-block">
+                        Choose File
+                    </label>
+                    <span id="faceImageName" class="ml-3 text-gray-700"></span>
+                </div>
+            </div>
+
+            <!-- Select Target Video -->
+            <div class="mb-6">
+                <label for="targetVideo" class="block text-lg font-semibold mb-2 text-indigo-600">Select Target Video:</label>
+                <div class="relative mt-6">
+                    <input type="file" id="targetVideo" accept="video/*" class="hidden" />
+                    <label for="targetVideo" class="w-full text-center bg-indigo-600 text-white py-2 px-4 rounded-md cursor-pointer font-semibold hover:bg-indigo-700 inline-block">
+                        Choose File
+                    </label>
+                    <span id="targetVideoName" class="ml-3 text-gray-700"></span>
+                </div>
+            </div>
+
+
+            <!-- Generate Button -->
+            <div class="text-center mt-8">
+                <button id="generateButton" class="bg-indigo-600 text-white py-2 px-6 rounded-full font-semibold shadow-md hover:bg-indigo-700">
+                    Generate Deepfake
+                </button>
+            </div>
+
+            <!-- Output Section -->
+            <div id="outputMessage" class="mt-6 text-center hidden">
+                <p class="text-lg font-semibold text-green-600">Processing... Please wait while your deepfake is being generated.</p>
+            </div>
+        </div>
+    </section>
+   
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="py-20 bg-gray-100">
+        <div class="container mx-auto text-center px-4">
+            <h2 class="text-3xl font-bold mb-8">How It Works</h2>
+           
+                
+             
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-2">1. Upload</h3>
+                    <p>Start by uploading a single image of yourself.</p>
+                </div>
+                <!-- TODO Choose Video/Stream Select the video or stream where you'd like to appear  -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-2">2. Choose Video</h3>
+                    <p>Select the video where you'd like to appear.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-2">3. Download or Share</h3>
+                    <p>Save your creation or share it with the world.</p>
+                </div>
+            </div>
+            
+           
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="py-20 bg-white">
+        <div class="container mx-auto text-center px-4">
+            <h2 class="text-3xl font-bold mb-8">Watch DeepCam in Action</h2>
+            <img src="demo.gif" alt="DeepCam Demo" class="mx-auto mb-4 w-2/3 max-w-lg shadow-lg rounded-lg">
+            <p class="text-lg">Experience the magic of DeepCam in real-time face swapping.</p>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-4">
+        <div class="container mx-auto text-center">
+            <p class="text-sm">&copy; 2024 DeepCam.online. All rights reserved.</p>
+        </div>
+    </footer>
+
+        <!-- JavaScript for handling file previews and button interaction -->
+        <script>
+// Preview the selected face image
+document.getElementById('faceImage').addEventListener('change', function (event) {
+    const file = event.target.files[0];
+    const faceImagePreview = document.createElement('img');
+
+    // Remove the previous preview if it exists
+    const existingPreview = document.querySelector('#faceImagePreview');
+    if (existingPreview) {
+        existingPreview.remove();
+    }
+
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            faceImagePreview.src = e.target.result;
+            faceImagePreview.id = 'faceImagePreview';
+            faceImagePreview.classList.add('w-32', 'h-32', 'mx-auto', 'rounded-full', 'mt-4', 'object-cover');
+            document.getElementById('faceImage').parentNode.appendChild(faceImagePreview);
+        };
+        reader.readAsDataURL(file);
+    }
+});
+
+// Preview the selected target video
+document.getElementById('targetVideo').addEventListener('change', function (event) {
+    const file = event.target.files[0];
+    const videoPreview = document.createElement('video');
+
+    // Remove the previous preview if it exists
+    const existingVideoPreview = document.querySelector('#videoPreview');
+    if (existingVideoPreview) {
+        existingVideoPreview.remove();
+    }
+
+    if (file) {
+        const videoURL = URL.createObjectURL(file);
+        videoPreview.src = videoURL;
+        videoPreview.controls = true;
+        videoPreview.id = 'videoPreview';
+        videoPreview.classList.add('w-full', 'h-auto', 'mx-auto', 'mt-4', 'rounded-md', 'shadow-md');
+        document.getElementById('targetVideo').parentNode.appendChild(videoPreview);
+    }
+});
+
+            document.getElementById('generateButton').addEventListener('click', function () {
+                const faceImage = document.getElementById('faceImage').files[0];
+                const targetVideo = document.getElementById('targetVideo').files[0];
+        
+                if (faceImage && targetVideo) {
+                    document.getElementById('outputMessage').classList.remove('hidden');
+                    // Here you can add your JavaScript code to handle the file processing and generating the deepfake
+                    console.log('Face Image:', faceImage);
+                    console.log('Target Video:', targetVideo);
+                } else {
+                    alert('Please select both a face image and a target video.');
+                }
+            });
+
+            // Toggle mobile menu visibility
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    menuToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+        </script>
+
+</body>
+</html>
